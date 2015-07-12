@@ -14,6 +14,13 @@ function setDirections() {
             continue;
         element.style.textAlign = "left";
         element.style.direction = "rtl";
+        for (var j in element.childNodes) {
+            var child = element.childNodes[j];
+            if (!(child.style instanceof CSSStyleDeclaration))
+                continue;
+            child.style.textAlign = "initial";
+            child.style.direction = "initial";
+        }
     }
 }
 
