@@ -4,23 +4,24 @@ function elementShouldBeRTL(element) {
     return /[א-ת]/.test(element.innerHTML);
 }
 
+function alreadyApplied(element) {
+    return element.children.length == 1 && (
+            element.children[0].tagName == "P" || element.children[0].tagName == "p");
+}
+
+function applyTo(element) {
+    element.innerHTML = '<p style="direction: rtl; text-align: left; margin: 0;">' + element.innerHTML + '</p>';
+}
+
 function setDirections() {
-    var contents = document.getElementsByClassName('message_content');
+    var contents = document.getElementsByClassName('message_body');
     for (var i in contents) {
         var element = contents[i];
-        if (!(element.style instanceof CSSStyleDeclaration))
-            continue;
         if (!elementShouldBeRTL(element))
             continue;
-        element.style.textAlign = "left";
-        element.style.direction = "rtl";
-        for (var j in element.childNodes) {
-            var child = element.childNodes[j];
-            if (!(child.style instanceof CSSStyleDeclaration))
-                continue;
-            child.style.textAlign = "initial";
-            child.style.direction = "initial";
-        }
+        if (alreadyApplied(element))
+            continue;
+        applyTo(element);
     }
 }
 
