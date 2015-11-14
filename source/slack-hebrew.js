@@ -11,6 +11,12 @@ function alreadyApplied(element) {
 
 function applyTo(element) {
     element.innerHTML = '<p style="direction: rtl; text-align: left; margin: 0;">' + element.innerHTML + '</p>';
+    for (var i in element.children[0].children) {
+        var child = element.children[0].children[i];
+        if (!(child.style instanceof CSSStyleDeclaration))
+            continue;
+        child.style.textAlign = "initial";
+    }
 }
 
 function setDirections() {
@@ -30,7 +36,7 @@ function domModified() {
     setTimeout(function() { // debouce modifications
         setDirections();
         document.body.addEventListener('DOMSubtreeModified', domModified);
-    }, 1000);
+    }, 500);
 }
 
 document.body.addEventListener("DOMSubtreeModified", domModified);
