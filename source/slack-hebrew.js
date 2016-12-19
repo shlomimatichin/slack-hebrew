@@ -1,4 +1,4 @@
-document.getElementById('message-input').dir = 'auto';
+document.getElementById('msg_input').dir = 'auto';
 
 function elementShouldBeRTL(element) {
     return /[א-ת]/.test(element.innerHTML);
