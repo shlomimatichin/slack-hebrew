@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Slack Hebrew",
-  "version": "1.4",
+  "version": "1.5",
   "description": "In Slack web app: modify direction to rtl, but only for messages containing hebrew characters",
   "icons" : { "128": "icon.png" }, 
   "author": "Shlomi Matichin <shlomomatichin@gmail.com>",
